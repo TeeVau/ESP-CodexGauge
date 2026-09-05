@@ -6,14 +6,14 @@ Start with the Serial Monitor at `115200 baud`. The firmware reports the failing
 
 ### `secrets.h: No such file or directory`
 
-Copy `secrets.example.h` to `secrets.h` in the same directory as the `.ino` file. Keep the names exactly as shown:
+Copy `src/secrets.example.h` to `src/secrets.h`, next to the `.ino` file. Keep the names exactly as shown:
 
 ```cpp
 constexpr char WIFI_SSID[] = "your-wifi-name";
 constexpr char WIFI_PASSWORD[] = "your-wifi-password";
 ```
 
-Never commit `secrets.h` or replace the placeholders in `secrets.example.h` with real credentials.
+Never commit `src/secrets.h` or replace the placeholders in `src/secrets.example.h` with real credentials.
 
 ### ArduinoJson or Adafruit headers are missing
 

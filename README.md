@@ -115,7 +115,7 @@ Open **Sketch → Include Library → Manage Libraries** and install:
 
 ### 3. Configure Wi-Fi
 
-Copy `secrets.example.h` to `secrets.h` in the sketch directory and replace the placeholders:
+Copy `src/secrets.example.h` to `src/secrets.h` and replace the placeholders:
 
 ```cpp
 #pragma once
@@ -128,7 +128,7 @@ constexpr char WIFI_PASSWORD[] = "your-wifi-password";
 
 ### 4. Compile and upload
 
-1. Open `ESP-CodexGauge.ino` in Arduino IDE.
+1. Open `src/ESP-CodexGauge.ino` in Arduino IDE.
 2. Select the Wemos D1 mini board and the correct USB port.
 3. Click **Verify**.
 4. Click **Upload**.
@@ -227,8 +227,9 @@ Set these flags to `true` only while diagnosing a problem. Never publish HTTP re
 
 ```text
 ESP-CodexGauge/
-├── ESP-CodexGauge.ino
-├── secrets.example.h
+├── src/
+│   ├── ESP-CodexGauge.ino
+│   └── secrets.example.h
 ├── assets/
 │   ├── display.jpg
 │   ├── enclosure-parts.jpg

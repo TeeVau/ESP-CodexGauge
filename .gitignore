@@ -1,5 +1,6 @@
 # Local credentials
 secrets.h
+/src/secrets.h
 
 # Arduino / PlatformIO build output
 build/

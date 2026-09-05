@@ -30,11 +30,14 @@ jobs:
           arduino-cli lib install "Adafruit SSD1306"
 
       - name: Provide non-secret CI configuration
-        run: cp secrets.example.h secrets.h
+        run: |
+          mkdir -p .arduino-build/sketch/ESP-CodexGauge
+          cp src/ESP-CodexGauge.ino .arduino-build/sketch/ESP-CodexGauge/
+          cp src/secrets.example.h .arduino-build/sketch/ESP-CodexGauge/secrets.h
 
       - name: Compile Wemos D1 mini firmware
         run: >-
           arduino-cli compile
           --fqbn esp8266:esp8266:d1_mini
           --build-path .arduino-build/d1_mini
-          .
+          .arduino-build/sketch/ESP-CodexGauge
