@@ -1,0 +1,40 @@
+name: Compile ESP8266 firmware
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Arduino CLI
+        uses: arduino/setup-arduino-cli@v2
+
+      - name: Install ESP8266 core
+        run: |
+          arduino-cli core update-index
+          arduino-cli core install esp8266:esp8266@3.0.0
+
+      - name: Install libraries
+        run: |
+          arduino-cli lib install "ArduinoJson@6.21.6"
+          arduino-cli lib install "Adafruit GFX Library"
+          arduino-cli lib install "Adafruit SSD1306"
+
+      - name: Provide non-secret CI configuration
+        run: cp secrets.example.h secrets.h
+
+      - name: Compile Wemos D1 mini firmware
+        run: >-
+          arduino-cli compile
+          --fqbn esp8266:esp8266:d1_mini
+          --build-path .arduino-build/d1_mini
+          .

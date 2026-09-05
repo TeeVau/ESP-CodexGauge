@@ -1,0 +1,21 @@
+# Local credentials
+secrets.h
+
+# Arduino / PlatformIO build output
+build/
+.arduino-build/
+.pio/
+*.bin
+*.elf
+*.hex
+*.log
+*.tmp
+
+# Editor / OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local photo import folder; curated public images live in assets/
+iCloud*Fotos/
