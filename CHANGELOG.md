@@ -13,6 +13,7 @@
 - Added GitHub Actions compilation for `esp8266:esp8266:d1_mini` and a
   generated GitHub social-preview asset under 1 MB.
 - Pinned the CI build to the currently available ESP8266 Arduino Core `3.1.2`.
+- Configured CI to use the official ESP8266 board-manager index explicitly.
 
 ## 0.8.2 — 2026-09-05
 
