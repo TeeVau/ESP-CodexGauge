@@ -8,9 +8,9 @@
 **Platform:** ESP8266 / Wemos D1 mini<br>
 **License:** MIT
 
-![ESP CodexGauge in its enclosure](assets/project-in-use.jpg)
+![ESP CodexGauge GitHub social preview](assets/github-social-preview.jpg)
 
-_The completed gauge running beside a development computer._
+_A compact ESP8266 maker project for monitoring ChatGPT Work / Codex usage windows._
 
 ## What it does
 
@@ -70,6 +70,10 @@ The firmware checks I²C addresses `0x3C` and `0x3D` automatically. See the deta
 A compatible enclosure is available on [Thingiverse](https://www.thingiverse.com/thing:3811240).
 
 ![Printed enclosure parts](assets/enclosure-parts.jpg)
+
+![Completed ESP CodexGauge](assets/project-in-use.jpg)
+
+_The completed gauge running beside a development computer._
 
 ## Software requirements
 
@@ -233,6 +237,7 @@ ESP-CodexGauge/
 ├── assets/
 │   ├── display.jpg
 │   ├── enclosure-parts.jpg
+│   ├── github-social-preview.jpg
 │   ├── project-in-use.jpg
 │   └── wiring.jpg
 ├── README.md
