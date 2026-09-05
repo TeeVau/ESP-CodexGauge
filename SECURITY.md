@@ -1,10 +1,17 @@
 # Security Policy
 
+This policy applies to the public `0.8.3` release and later revisions unless a
+newer policy is published.
+
 ## Scope
 
 ESP CodexGauge handles Wi-Fi credentials, OAuth tokens, and a ChatGPT account identifier on a physical ESP8266. The usage endpoint is undocumented and may change without notice.
 
 The refresh token and account ID are stored as plaintext in LittleFS. Anyone with physical flash access may be able to recover them.
+
+The embedded OAuth client ID is a public application identifier used by the
+device-login flow; it is not a replacement for a user secret. User Wi-Fi and
+OAuth credentials must remain local.
 
 ## Do not disclose secrets
 

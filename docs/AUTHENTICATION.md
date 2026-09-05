@@ -1,6 +1,7 @@
 # Authentication and Stored Credentials
 
 ESP CodexGauge uses the OpenAI device-login flow directly from the ESP8266. No API key is used.
+This description applies to firmware release `0.8.3`.
 
 ## First login
 
@@ -29,6 +30,11 @@ The stored refresh token is plaintext in ESP8266 flash. Physical flash access mu
 
 After a reboot, the device loads the stored authentication and refreshes the access token. It automatically retries temporary failures. If the refresh token is invalid, revoked, reused, or expired, the stored authentication is cleared and a new device login is started.
 
+Temporary refresh failures do not immediately delete the stored login. The
+main loop retries them after about 60 seconds. A successful delayed refresh
+immediately starts a usage cycle; a permanent refresh failure clears the
+stored file and falls back to a fresh device login.
+
 ## Force a new login
 
 In `ESP-CodexGauge.ino`, temporarily change:
@@ -38,6 +44,9 @@ constexpr bool FORCE_RELOGIN = true;
 ```
 
 Flash once and complete the login. Then set the value back to `false` and flash again. Do not leave it enabled for normal operation.
+
+`FORCE_RELOGIN` is a compile-time setting. It does not expose a menu or a
+runtime command, so remember to upload the normal `false` build afterwards.
 
 ## Safe diagnostics
 

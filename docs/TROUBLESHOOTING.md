@@ -1,6 +1,19 @@
 # Troubleshooting
 
 Start with the Serial Monitor at `115200 baud`. The firmware reports the failing stage as WLAN, NTP, TLS, AUTH, USAGE, or OLED.
+The examples below describe firmware release `0.8.3`.
+
+## Read the display state first
+
+| Display state | Meaning |
+|---|---|
+| `OPENAI / warte auf Daten` | No successful usage response has arrived yet. |
+| Normal `5H` / `WK` tanks | The last successful usage response is fresh. |
+| Inverted `5H` / `WK` labels | The last valid usage response is older than 15 minutes; the values are retained but stale. |
+| `--%` | The corresponding usage window is not present in the response. |
+| `LEER 14:31` or `LEER DI 16:29` | The quota is genuinely empty and the next reset time is known. |
+
+An empty quota (`0%`) must not be confused with missing or stale data.
 
 ## Compilation
 
@@ -47,7 +60,13 @@ The firmware continues without an OLED. Use Serial output to distinguish a displ
 
 ### WLAN timeout
 
-Check the case-sensitive SSID and password in `secrets.h`, 2.4 GHz availability, signal strength, and USB power. The firmware waits up to 30 seconds for a connection and reconnects later when possible.
+Check the case-sensitive SSID and password in `secrets.h`, 2.4 GHz availability, signal strength, and USB power. The firmware waits up to 30 seconds for a connection and reconnects later when possible. The ESP8266 cannot join a 5 GHz-only network.
+
+### Wi-Fi is connected but login does not start
+
+The firmware briefly stabilizes a fresh connection and checks DNS for
+`auth.openai.com` before the first device-login request. Check that the router
+allows DNS and HTTPS access, then watch the Serial Monitor for the next retry.
 
 ### NTP timeout or TLS certificate failure
 
@@ -74,6 +93,13 @@ The countdown is calculated locally. Once `reset_at` is reached, the firmware wa
 ### The gauge shows `0%`
 
 `0%` means the returned remaining quota is empty. When a reset timestamp is available, the OLED shows the next availability time inside the tank. This is not the same as stale data or missing data; those states are reported separately.
+
+### The reset time has passed but the value has not changed
+
+The firmware waits 30 seconds after the backend's `reset_at` timestamp and
+performs one additional usage request. The normal five-minute polling cadence
+then starts from that special request. If the backend has not applied the
+reset yet, the previous empty result can remain valid for a short time.
 
 ## Reporting a bug
 

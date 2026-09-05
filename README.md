@@ -2,6 +2,10 @@
 
 **A standalone ESP8266 OLED fuel gauge for ChatGPT Work / Codex usage limits.**
 
+[![Compile firmware](https://github.com/TeeVau/ESP-CodexGauge/actions/workflows/compile.yml/badge.svg)](https://github.com/TeeVau/ESP-CodexGauge/actions/workflows/compile.yml)
+[![Firmware release](https://img.shields.io/github/v/release/TeeVau/ESP-CodexGauge?display_name=tag)](https://github.com/TeeVau/ESP-CodexGauge/releases)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
 > ESP CodexGauge displays the remaining 5-hour and weekly usage windows on a small SSD1306 OLED. It authenticates directly from the ESP8266 using the OpenAI device-login flow and needs no computer, server, proxy, API key, or browser automation after the initial login.
 
 **Firmware:** `0.8.3` (experimental public release)<br>
@@ -11,6 +15,11 @@
 ![ESP CodexGauge GitHub social preview](assets/github-social-preview.jpg)
 
 _A compact ESP8266 maker project for monitoring ChatGPT Work / Codex usage windows._
+
+The documented public release is **v0.8.3**. It includes reset-aware usage polling,
+automatic authentication recovery, persistent LittleFS credentials, and the
+maker documentation in this repository. See the [changelog](CHANGELOG.md) for
+the firmware history.
 
 ## What it does
 
@@ -48,7 +57,7 @@ ESP CodexGauge is an independent community project and is not affiliated with, e
 | Part | Quantity | Notes |
 |---|---:|---|
 | Wemos D1 mini V3.0.0 | 1 | ESP8266 controller |
-| 0.91-inch SSD1306 OLED | 1 | 128×32 pixels, I²C |
+| 0.91-inch SSD1306 OLED | 1 | 128×32 pixels, I²C; optional for Serial-only operation |
 | USB power supply and cable | 1 | 5 V USB input to the D1 mini |
 | Enclosure | optional | A compatible 3D-printable enclosure is linked below |
 
@@ -83,6 +92,8 @@ _The completed gauge running beside a development computer._
 - [Adafruit GFX Library](https://github.com/adafruit/Adafruit-GFX-Library)
 - [Adafruit SSD1306](https://github.com/adafruit/Adafruit_SSD1306)
 - LittleFS from the ESP8266 Arduino Core
+
+The ESP8266 connects to 2.4 GHz Wi-Fi. A 5 GHz-only network is not supported.
 
 Recommended Arduino IDE settings:
 
@@ -187,6 +198,10 @@ WK [LEER DI 16:29        ]   0%
 - At 10% or below, the percentage blinks between normal and inverted display.
 - If no successful usage response has ever arrived, the OLED shows `OPENAI / warte auf Daten`.
 - If the last successful response is older than 15 minutes, the known values remain visible and the `5H`/`WK` labels are inverted to indicate stale data.
+
+The important distinction is that an empty quota is a valid result: `0%` is
+shown with `LEER` and the known reset time. Missing data is shown as `--%`,
+while an older but valid result keeps its value and marks the labels as stale.
 
 Usage is normally refreshed every five minutes. A known reset triggers one additional refresh 30 seconds later, after which the regular five-minute interval starts again.
 

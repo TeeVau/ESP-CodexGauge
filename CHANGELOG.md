@@ -8,6 +8,10 @@
 - The special reset refresh becomes the new anchor for the normal five-minute polling interval.
 - Duplicate special refreshes for the same `reset_at` value are suppressed.
 - Network hardening and the `AUTH OK` OLED state remain included.
+- Completed the public maker documentation for hardware, authentication,
+  troubleshooting, contributing, and security.
+- Added GitHub Actions compilation for `esp8266:esp8266:d1_mini` and a
+  generated GitHub social-preview asset under 1 MB.
 
 ## 0.8.2 — 2026-09-05
 

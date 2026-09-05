@@ -2,6 +2,10 @@
 
 Thanks for helping improve ESP CodexGauge. Documentation corrections, wiring feedback, compatibility reports, and small firmware fixes are welcome.
 
+The current public firmware release is `0.8.3`. Changes that alter displayed
+states, polling, authentication, or hardware assumptions must update the
+README and the relevant document in `docs/`.
+
 ## Before opening an issue or pull request
 
 - Search existing issues first.
@@ -20,3 +24,7 @@ Thanks for helping improve ESP CodexGauge. Documentation corrections, wiring fee
 6. Explain hardware and authentication testing in the pull request.
 
 The GitHub Actions compile check must pass before a pull request can be merged. Hardware-dependent behavior should be clearly identified when it cannot be tested by CI.
+
+For documentation-only changes, state which release behavior or onboarding
+step was checked. Do not add screenshots or logs containing credentials,
+account identifiers, device codes, or private network information.

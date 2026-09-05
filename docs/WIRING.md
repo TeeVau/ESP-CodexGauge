@@ -1,5 +1,7 @@
 # Wiring Guide
 
+This guide applies to firmware release `0.8.3`.
+
 ## Parts
 
 - Wemos D1 mini V3.0.0 (ESP8266)
@@ -25,6 +27,10 @@ The firmware probes both common SSD1306 I²C addresses:
 - `0x3D`
 
 No address change in the sketch is normally required. If neither address responds, the firmware continues in Serial-only mode and reports the problem at 115200 baud.
+
+The OLED is a convenience display, not a boot requirement. The ESP8266 can
+still connect, authenticate, fetch usage, and report diagnostics through the
+Serial Monitor when no compatible OLED is connected.
 
 ## Assembly checklist
 
