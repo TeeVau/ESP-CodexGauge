@@ -36,7 +36,9 @@ Install these libraries through the Arduino IDE Library Manager:
 - Adafruit GFX Library
 - Adafruit SSD1306
 
-Also verify that the ESP8266 board package is installed and that the selected board is `LOLIN(WEMOS) D1 R2 & mini`.
+Also verify that the ESP8266 board package is installed. CI currently checks
+against ESP8266 Arduino Core `3.1.2`; compatible 3.x releases may work, but
+the exact board selection must be `LOLIN(WEMOS) D1 R2 & mini`.
 
 ## Upload and boot
 

@@ -21,7 +21,7 @@ jobs:
       - name: Install ESP8266 core
         run: |
           arduino-cli core update-index
-          arduino-cli core install esp8266:esp8266@3.0.0
+          arduino-cli core install esp8266:esp8266@3.1.2
 
       - name: Install libraries
         run: |

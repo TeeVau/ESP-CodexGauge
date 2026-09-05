@@ -87,7 +87,7 @@ _The completed gauge running beside a development computer._
 ## Software requirements
 
 - [Arduino IDE 2](https://www.arduino.cc/en/software), or Arduino CLI
-- ESP8266 Arduino Core 3.x
+- ESP8266 Arduino Core 3.1.2 (the version pinned by CI)
 - ArduinoJson 6.x
 - [Adafruit GFX Library](https://github.com/adafruit/Adafruit-GFX-Library)
 - [Adafruit SSD1306](https://github.com/adafruit/Adafruit_SSD1306)
